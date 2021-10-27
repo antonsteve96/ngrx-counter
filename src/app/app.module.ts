@@ -14,6 +14,7 @@ import {HeaderComponent} from "./shared/components/header/header.component";
 import {appReducer} from "./store/app.state";
 import {SharedReducer} from "./store/shared/shared.reducer";
 import {SHARED_STATE_NAME} from "./store/shared/shared.selector";
+import {AuthEffects} from "./auth/state/auth.effects";
 
 @NgModule({
   declarations: [
@@ -29,7 +30,7 @@ import {SHARED_STATE_NAME} from "./store/shared/shared.selector";
     ReactiveFormsModule,
     StoreModule.forRoot(appReducer),
     FormsModule,
-    EffectsModule.forRoot([]),
+    EffectsModule.forRoot([AuthEffects]),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: environment.production,
