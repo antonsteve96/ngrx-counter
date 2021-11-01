@@ -6,7 +6,7 @@ import {User} from "../../models/user.model";
 const _authReducer = createReducer(
   initialState,
   on(loginSuccess, (state, action) => {
-    console.log(action)
+    //console.log(action)
     return {
       ...state,
       user: action.user
@@ -15,7 +15,7 @@ const _authReducer = createReducer(
   on(autoLogout, (state) => {
     return {
       ...state,
-      user: new User("","","",false,new Date()),
+      user: new User("","","",false, new Date()),
     }
   })
 );

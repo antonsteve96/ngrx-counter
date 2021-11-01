@@ -9,9 +9,9 @@ export const AUTO_LOGIN_ACTION = '[auth page] auto login';
 export const LOGOUT_ACTION = '[auth page] logout'
 
 export const loginStart = createAction(LOGIN_START, props<{email: string, password: string}>());
-export const loginSuccess = createAction(LOGIN_SUCCESS, props<{user: User}>());
+export const loginSuccess = createAction(LOGIN_SUCCESS, props<{user: User, redirect: boolean}>());
 export const loginFailure = createAction(LOGIN_FAILURE);
 export const signupStart = createAction(SIGNUP_START, props<{email: string, password: string}>())
-export const signupSucces = createAction(SIGNUP_SUCCESS, props<{user: User}>())
+export const signupSuccess = createAction(SIGNUP_SUCCESS, props<{user: User, redirect: boolean}>())
 export const autoLogin = createAction(AUTO_LOGIN_ACTION);
 export const autoLogout = createAction(LOGOUT_ACTION);

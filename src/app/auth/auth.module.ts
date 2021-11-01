@@ -5,7 +5,7 @@ import {CommonModule} from "@angular/common";
 import { SignupComponent } from './signup/signup.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import {EffectsModule} from "@ngrx/effects";
-import {AuthEffects} from "./state/auth.effects";
+import {HttpClientModule} from "@angular/common/http";
 
 const routes: Routes = [
   {path: '', children: [
@@ -24,6 +24,7 @@ const routes: Routes = [
   imports: [
     RouterModule.forChild(routes),
     CommonModule,
+    HttpClientModule,
     EffectsModule.forFeature(),
     ReactiveFormsModule,
   ],

@@ -1,0 +1,12 @@
+{
+  "posts": [
+    {
+      "title": "Post1",
+      "description": "Sample Post1"
+    },
+    {
+      "title": "Post2",
+      "description": "Sample Post2"
+    }
+  ]
+}

@@ -18,7 +18,6 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.isAuthenticated = this.store.select(isAuthenticated);
-    //console.log(this.isAuthenticated)
   }
   onLogout(event: Event){
     event.preventDefault();
