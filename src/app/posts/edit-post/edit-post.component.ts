@@ -6,7 +6,7 @@ import {initialPost, Post} from "../../models/post.model";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Subscription} from "rxjs";
 import {getPostById} from "../state/posts.selector";
-import {updatePost} from "../state/post.actions";
+import {updatePostSuccess} from "../state/post.actions";
 
 @Component({
   selector: 'app-edit-post',
@@ -15,7 +15,7 @@ import {updatePost} from "../state/post.actions";
 })
 export class EditPostComponent implements OnInit, OnDestroy {
   post: Post = initialPost;
-  postForm!: FormGroup;
+  postForm: FormGroup = new FormGroup({});
   postSubscription!: Subscription;
 
   constructor(
@@ -27,8 +27,14 @@ export class EditPostComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
       const id = (params.get('id') || '').toString();
-      this.postSubscription = this.store.select(getPostById(id)).subscribe((data) => {
-        this.post = data;
+      this.postSubscription = this.store.select(getPostById(id)).subscribe((post) => {
+        if(post){
+          this.post = post;
+          this.postForm.patchValue({
+            title: post.title,
+            description: post.description,
+          });
+        }
         this.createForm();
       });
     });
@@ -54,8 +60,9 @@ export class EditPostComponent implements OnInit, OnDestroy {
   }
 
   onSubmit(){
-    if(!this.postForm.valid)
+    if(!this.postForm.valid) {
       return;
+    }
     const title = this.postForm.value.title;
     const description = this.postForm.value.description;
     const post: Post = {
@@ -63,7 +70,7 @@ export class EditPostComponent implements OnInit, OnDestroy {
       title,
       description,
     };
-    this.store.dispatch(updatePost({ post }));
+    this.store.dispatch(updatePostSuccess({ post }));
     this.router.navigate(['posts']);
   }
 

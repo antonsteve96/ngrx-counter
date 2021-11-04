@@ -4,7 +4,7 @@ import {AppState} from "../../store/app.state";
 import {Observable} from "rxjs";
 import {Post} from "../../models/post.model";
 import {getPosts} from "../state/posts.selector";
-import {deletePost, loadPosts, loadPostsSuccess} from "../state/post.actions";
+import {deletePostSuccess, loadPosts} from "../state/post.actions";
 
 @Component({
   selector: 'app-post-list',
@@ -23,7 +23,7 @@ export class PostListComponent implements OnInit {
 
   onDeletePost(id: string){
     if(confirm("Are you sure you want to delete?")){
-      this.store.dispatch(deletePost({ id }))
+      this.store.dispatch(deletePostSuccess({ id }))
     }
   }
 
