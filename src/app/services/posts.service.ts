@@ -39,7 +39,7 @@ export class PostsService {
 
   deletePost(id: string) {
     return this.http.delete(
-      `https://ngrx-database-105ef-default-rtdb.europe-west1.firebasedatabase.app/posts/${id}`
+      `https://ngrx-database-105ef-default-rtdb.europe-west1.firebasedatabase.app/posts/${id}.json`
     );
   }
 
