@@ -37,7 +37,6 @@ const _postReducer = createReducer(
       posts: action.posts
     }
   })
-
 );
 
 export function postReducer(state: any, action: any){
