@@ -11,6 +11,7 @@ import {
 import {map, mergeMap, switchMap} from "rxjs/operators";
 import {PostsService} from "../../services/posts.service";
 import {Injectable} from "@angular/core";
+import {Post} from "../../models/post.model";
 
 @Injectable()
 export class PostEffects{
@@ -34,37 +35,41 @@ export class PostEffects{
         return this.postsService.addPost(action.post).pipe(
           map((data) => {
             const post = { ...action.post, id: data.name };
-            console.log(post);
             return addPostSuccess({ post });
           })
         );
       })
     );
   });
-
   updatePost$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(updatePost),
       switchMap((action) => {
         return this.postsService.updatePost(action.post).pipe(
           map((data) => {
-            return updatePostSuccess({ post: action.post });
+            const updatedPost: Post = {
+              ...action.post,
+              id: action.post.id
+            };
+            console.log(updatedPost);
+            return updatePostSuccess({ post: updatedPost });
           })
         );
       })
     );
   });
+
   deletePost$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(deletePost),
       switchMap((action) => {
         return this.postsService.deletePost(action.id).pipe(
           map((data) => {
-            console.log(action.id);
             return deletePostSuccess({ id: action.id });
           })
         );
       })
     );
   });
+
 }

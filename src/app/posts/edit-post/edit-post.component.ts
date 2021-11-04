@@ -6,7 +6,7 @@ import {initialPost, Post} from "../../models/post.model";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Subscription} from "rxjs";
 import {getPostById} from "../state/posts.selector";
-import {updatePostSuccess} from "../state/post.actions";
+import {updatePost} from "../state/post.actions";
 
 @Component({
   selector: 'app-edit-post',
@@ -70,7 +70,7 @@ export class EditPostComponent implements OnInit, OnDestroy {
       title,
       description,
     };
-    this.store.dispatch(updatePostSuccess({ post }));
+    this.store.dispatch(updatePost({ post }));
     this.router.navigate(['posts']);
   }
 
